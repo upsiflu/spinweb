@@ -1,0 +1,77 @@
+/*
+  elm-hot creates an additional div wrapper around the app to make HMR possible.
+  This could break styling in development mode if you are using Elm UI.
+
+  More context in the issue:
+    https://github.com/halfzebra/create-elm-app/issues/320
+*/
+[data-elm-hot="true"] {
+  height: inherit;
+}
+
+
+
+h1, h2, label {font-family: 'EB Garamond'; font-size: 4em;margin-top: 2em;}
+
+label { font-style: italic;  font-size: 1.2em; margin:2em; margin-bottom: 6em; display: block;}
+
+@keyframes reveal_border {
+  from {border-color: transparent;}
+  to {}
+}
+
+
+
+
+
+
+body {
+  font-family: 'Fira Sans', 'Source Sans Pro', 'Trebuchet MS', 'Lucida Grande', 'Bitstream Vera Sans', 'Helvetica Neue', sans-serif;
+  margin: 0;
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.4em;
+}
+
+
+img {
+  margin: 20px 0;
+  max-width: 20vh;
+}
+
+ 
+.wire:hover {background: orangered; outline: 2px solid white;
+outline-offset: -2px;}
+.wire:hover:after { 
+  outline: 2px solid white; outline-offset: -1px;
+}
+
+.zipper > * > * > .pivot { position: relative;}
+.zipper > * > * > .pivot + * { margin-left: 1em;}
+
+.zipper > * > * > .tails > .back::before, .zipper > * > * > .tails > .forth::before{
+  left: calc(-2em - 4px);
+  width: calc(100% + 3em);
+  background: rgb(235, 255, 0);
+}
+.zipper > * > * > .tails > .back::before{
+  left: calc(-2em - 4px);
+  width: calc(100% + 3em);
+  border-top-right-radius: 1.2em 1.2em;
+}
+.zipper > * > * > .pivot > .node { color: white;
+text-shadow: none;}
+.zipper > * > * > .pivot > .node:before { /*black triangle*/
+  content: " ";
+  border-left: 1.3em solid transparent;
+  border-right: 1.3em solid transparent;
+  border-top: 2.2em solid black;
+  position: absolute;
+  left: -.5em;
+  top: calc(50% - .9em);
+  z-index: -1;
+  width: 0; height: 0;
+  background: transparent;
+}

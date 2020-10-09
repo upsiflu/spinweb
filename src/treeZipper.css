@@ -1,0 +1,107 @@
+
+
+
+
+
+/* override tree styles */
+
+
+.tree.through .root { height: 100%;}
+.tree.through .branches, .tree.through .node { display: none;}
+
+
+.treeZipper > .focus > .tree::before, .treeZipper .up > .tree::before  {
+    height: calc(6em + 14px);
+    inset-block-start: -6em;
+}
+
+.treeZipper > .focus {padding-top: 4px; position: relative;}
+.treeZipper > .focus:before {
+    content: "";
+    position: absolute;
+    left: calc(50% - 2.5px);
+    inset-block-start: 3.5px;
+    border-block-start: 2px solid white;
+    width: 2px;
+    border-left: 1.5px solid transparent;
+    border-right: 1.5px solid transparent;
+    height: 0px;
+    z-index: 10;
+}
+
+.treeZipper .edge.tree { display:none;}
+.treeZipper .left.tree > .branches::before, 
+.treeZipper .right.tree > .branches::before,
+.treeZipper .left.tree::before, 
+.treeZipper .right.tree::before {
+    display: none;
+}
+
+
+
+/* Zipper Layout */
+
+.root:empty:after {opacity: .2;}
+
+
+.treeZipper .context {
+    display: block;
+}
+.treeZipper .focus {
+    display: block;
+}
+
+.treeZipper {
+    display: block;
+    padding-top: 16em;
+    margin-top: -10em;
+    position: relative;
+    overflow: hidden;
+}
+.treeZipper:after{
+    content:"";
+    position: absolute;
+    top: calc(10em + 2px);
+    left: 0;
+    width: 100%;
+    border-top: 1.5px dashed silver;
+    z-index: -4;
+}
+
+.breadcrumb {
+    display: block;
+    background: rgba(0,0,0,.1);
+    position: relative; 
+    width: 100%;
+    margin-bottom: 6em;
+    padding-top: 4px;
+}
+.breadcrumb  > .left , .breadcrumb  > .right { 
+    position: absolute;
+    transform:rotate(180deg);
+    top: calc(2.6em + 5px);
+    display: block;
+}
+
+.breadcrumb  > .left  {
+    right: calc(50% + 5px);
+    transform-origin: 100% 0%;
+    transform:rotate(30deg);
+    transition:all 1s;
+}
+.breadcrumb  > .right  {
+    left: calc(50% + 5px);
+    transform-origin: 0% 0%;
+    transform:rotate(-30deg);
+    transition:all 1s;
+}
+.breadcrumb:hover ~ .breadcrumb .up .tree:before, .context:hover + .focus > .tree:before {outline: 8px solid tomato;}
+
+
+/*
+.breadcrumb > .left {transform: rotate(90deg);
+right: 50%;}
+.breadcrumb > .center {transform: rotate(180deg)}
+.breadcrumb > .right {transform: rotate(270deg);
+left: 50%;}
+*/

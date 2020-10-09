@@ -1,0 +1,120 @@
+
+
+
+
+/* white outline */
+.node { 
+    min-width: 1.2em;
+    min-height: 1.2em;
+    flex-grow: 1; padding: .5em; position: relative;
+    text-shadow: 
+        1px 1px white, 1.414px 0 white, 
+        1px -1px white, 0 -1.414px white, 
+        -1px -1px white, -1.414px 0 white, 
+        -1px 1px white, 0 1.414px white; 
+}
+
+
+/* centerfill */
+.node::before {
+    content:"";
+    background:white;
+    width: .4em;
+    height: .6em;
+    position: absolute;
+    left: calc(50% - .2em);
+    top: calc(50% - .3em);
+    z-index: -1;
+  }
+  
+  .wire, .node { 
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+  }
+  .node:hover:after { 
+    content:"";
+    background:black;
+    width: calc(100% + 0em);
+    height: calc(100% - .4em);
+    position: absolute;
+    left: 0;
+    top: .2em;
+    z-index: -1;
+    border-radius: 2px;
+    outline: 2px solid white;
+  }
+
+
+
+
+/* root and focus styles */
+
+.focus > .tree > .root > .node, .focus > .node {
+    margin-block-end: 1em;
+    color: white;
+    text-shadow: 
+        1px 1px black, 1.414px 0 black, 
+        1px -1px black, 0 -1.414px black, 
+        -1px -1px black, -1.414px 0 black, 
+        -1px 1px black, 0 1.414px black; 
+}
+
+.focus > .node {
+    margin-block-end: 1em;
+    color: yellow;
+    font-size: 150%;
+    text-shadow: 
+        1px 1px black, 1.414px 0 black, 
+        1px -1px black, 0 -1.414px black, 
+        -1px -1px black, -1.414px 0 black, 
+        -1px 1px black, 0 1.414px black; 
+}
+
+/* black triangle for focus */
+.focus > .tree > .root > .node::before, .focus > .node::before, .focus > .tree > .root > .node::before, .tree:hover > .root > .node::before { 
+    content: " ";
+    border-left: 1.3em solid transparent;
+    border-right: 1.3em solid transparent;
+    border-block-start: 2.2em solid black;
+    position: absolute;
+    left: calc(50% - 1.3em);
+    inset-block-start: .2em;
+    z-index: -1;
+    width: 0; height: 0;
+    background: transparent;
+    transition:all .3s;
+    }
+    
+/* different style for focus */
+.focus > .node::before {
+    transform:rotate(67.5deg) skewX(45deg) scaleY(0.7071);
+    width: calc(2em - 5px); height: calc(2em - 5px); background: black;
+    border: 2.5px solid white;
+    top:.1em;
+    left: calc(50% - 1em);
+    border-radius: 4px;
+}
+
+
+
+
+  /* hover effect */
+
+
+.node:hover {
+    text-shadow: 1px 1px tomato, 2px 0 tomato, 1px -1px tomato, 0 -2px tomato, -1px -1px tomato, -2px 0 tomato, -1px 1px tomato, 0 2px tomato;
+}
+.node:hover::before {
+    background: tomato;
+}
+.node:hover::after {
+    border-radius: calc( 1em + 5px);
+    background: tomato;
+    padding: 5px 2px;
+    left: -2px;
+    inset-block-start: -3px;
+    outline: transparent;
+    z-index: -3;
+}
+

@@ -1,0 +1,97 @@
+
+.node { color: black;}
+.wire {color: red;}
+
+
+
+
+.zipper {padding: 2em 1em; display: inline-block; outline: 1px solid silver; outline-offset: -1.5px;}
+
+
+.loop { padding-right: 1.2em;
+        position: relative;
+        background: rgba(255,255,255,.1);
+        outline-offset: -.5px;
+      }
+/* reduced distance between loops */
+.loop + .loop { margin-left: -.6em;}
+
+.loop:after {
+  content: "";
+  height: 0px; width: 0px;
+  position: absolute;
+  right:-2.8px; top: calc(1.1em - 1px);
+  border-top: 3.2px solid white;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+
+.pivot, .tails {
+    display: inline-block;
+    min-width: 1.2em;
+}
+.pivot {
+  position: relative;
+  left: -.3em;
+  vertical-align: top;
+  height: 100%;
+  display: inline-flex;
+  flex-direction: column;justify-content: start;
+}
+.pivot > .node { flex-grow:0;}
+
+
+.back, .forth {
+    position: relative;
+    display: flex;
+    width: 100%;
+    border-radius: 1.2em 1.2em;
+    justify-content: center;
+    outline-offset: -1px;
+}
+.back::before, .forth::before{
+  outline-offset: -1px;
+  position: absolute;
+  content: "";
+  border: 4px double black;
+  pointer-events: none;
+  left: calc(-1em - 4px);
+  width: calc(100% + 2em);
+  background: white;
+  animation-name: reveal_border;
+  animation-duration: 3s;
+  z-index: -2;
+}
+.forth::before {
+  border-radius: 0 0 1.2em 1.2em;
+  border-top-width: 0; top: 0;
+  height: calc(1.1em - 2px);
+}
+.back::before {
+  border-radius: 0em 0em 0 0;
+  border-bottom-width: 0; bottom: 0;
+  height: calc(100% - 2px - 1.1em);
+}
+.back:empty, .forth:empty {
+  height: 1.2em; padding: .5em 0;
+}
+
+.sequence, .nodesequence {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.wire { flex-grow: 1; padding: .5em 0;
+    min-width: 1.2em;}
+.wire::after, .back:empty::after, .forth:empty::after {
+    position: absolute;
+    left:1px; top:calc(50% - 4px); height: 5px; width: calc(100% - 4px);
+    content:"";
+    border: 1px solid white;
+    border-top-color: transparent;
+    border-bottom-color: rgba(0,0,0,.2);
+}
+.wire::after {background: rgb(59, 167, 131);}
+.back:empty::after, .forth:empty::after {background: rgb(20,20,20);
+}

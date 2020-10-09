@@ -1,0 +1,166 @@
+.tree {display: inline-flex; 
+    position: relative;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+
+
+.branches {display: flex; 
+    flex-direction: row;
+    position: relative; 
+    justify-content: center;
+}
+
+
+.tree { outline: 0px outset rgba(225,140,0,.7);
+    outline-offset: -1.75px;}
+
+.with_3D_effect .branches {
+box-shadow: inset 2px 3px 8px 8px rgba(255,255,255,.45), 1px 3px 16px 3px rgba(0,0,0,.2), inset 0px 0px 2px 1px rgba(0,0,0,.1);}
+
+.branches:empty {box-shadow:none; min-height: .6em;}
+
+
+
+.tree .tree > .root > .node { margin-block-end: 0; }
+
+
+
+/* no black triangle*/
+.tree .tree > .root > .node::before {
+    opacity:0;
+    border-block-start-width:.7em;
+}
+
+
+.tree .root { 
+    padding: .2em; 
+    flex-grow: 1;
+}
+.tree .branches { 
+    flex-grow: 3;
+}
+.tree .root {
+    position: relative;
+}
+
+
+
+
+
+
+/* LINES */
+
+/* to children */
+.tree .root:after {
+    content: "";
+    position: absolute;
+    left: calc(50% - 2.5px);
+    inset-block-end: 3.5px;
+    border-left: 5px double black;
+    width: 0;
+    height: calc(100% - 1.8em);
+    z-index: -3;
+}
+
+/* rails for going down left and right */
+.tree::before {
+    content: "";
+    position: absolute;
+    left: calc(50% - 2.5px);
+    inset-block-start: 0px;
+    width: 0px;
+    height: 12px;
+    border: 1.5px solid black;
+    border-block-start: 0px solid black;
+    border-block-end: 0px solid transparent;
+    width: 2px;
+    z-index: -1;
+}
+
+/* gaps and rails for going down in the middle */
+.tree:not(:first-child):not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: calc(50% - 2.5px);
+    inset-block-start: -1.75px;
+    height: 12px;
+    border: 1.5px solid black;
+    border-block-start: 2px solid white;
+    border-block-end: 0px solid transparent;
+    width: 2px;
+    z-index: -1;
+}
+
+/* horizontal lines (only within nested trees) */
+.tree .tree::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    inset-block-start: -5px;
+    width: 100%;
+    height: 0px;
+    border-block-start: 5px double black;
+    z-index: -2;
+}
+.tree .tree:first-of-type::after {
+    left: calc(50% - 2.5px);
+    width: calc(50% - 2.5px);
+    border-left: 5px double black;
+    border-top-left-radius: 5px;
+}
+.tree .tree:last-of-type::after {
+    right: calc(50% - 2.5px);
+    width: calc(50% - 2.5px);
+    border-right: 5px double black;
+    border-top-right-radius: 5px;
+}
+.tree .tree:only-of-type::after {
+    right: calc(50% - 2.5px);
+    width: 0;
+    inset-block-start: -5px;
+    height: 5px;
+    border-block-start: 0px solid black;
+    border-block-end: 0px solid black;
+    border-left: 0px solid transparent;
+    z-index: 1;
+    border-radius: 0%;
+}
+
+
+/* gap for branching */
+.branches::before {
+    content: "";
+    position: absolute;
+    left: calc(50% - 2.5px);
+    inset-block-start: -5.25px;
+    border-block-end: 2px solid white;
+    width: 2px;
+    border-left: 1.5px solid transparent;
+    border-right: 1.5px solid transparent;
+    height: 0px;
+}
+
+
+
+
+/* Black Dot */
+.branches:empty::after {
+    content: "";
+    position: absolute;
+    left: calc(50% - 4px);
+    inset-block-start: -5px;
+    background: black;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    border: none;
+}
+.tree:hover::before, .tree:hover::after, .tree:hover > .root::after { 
+    background-color: tomato;
+}
+.tree:not(:first-child):not(:last-child):hover::before, .tree:hover > .branches:before { 
+    border-block-start-color: tomato;
+    border-block-end-color: tomato;
+}

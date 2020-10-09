@@ -1,0 +1,109 @@
+.lopp .end,
+.loop .wire,
+.loop .sequence,
+.loop .part,
+.loop .join,
+.loop .head {
+    display: block;
+    position: relative;
+    width: auto;
+}
+.loop .sequence {outline: 2px dotted darkcyan;
+display: inline-block;
+}
+
+.loop .join {
+    border: 2px solid orangered;
+    margin: 0 1px;
+    border-bottom: none;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    outline: 1px solid white;
+}
+.loop .join > .head {height: 1em;}
+
+.loop .end > .head::after ,.loop .sequence > .head::after, .loop .join > .head:after {
+    content: ""; position: absolute;
+    left: calc(50% - 1px);
+    width: 2px;
+    background: black;
+    height: 100%;
+    top: 0;
+    z-index: -1;
+}
+.loop .part {
+    display: flex;
+    justify-content: center;
+    padding-top: 5px;
+}
+.loop .part > .left, .loop .part > .right {
+    position: relative;
+}
+.loop .part > .left::after {
+    content: ""; position: absolute;
+    right: 0; top: -5px;
+    border-top: 3px solid black;
+    border-left: 2px solid black;
+    width: calc(50% - 1px); height: 2px;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.loop .part > .right::after {
+    content: ""; position: absolute;
+    left: 0; top: -5px;
+    border-top: 3px solid black;
+    border-right: 2px solid black;
+    width: calc(50% - 1px); height: 2px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+
+
+
+/*
+
+.loop .end {outline: 1px solid black;}
+.loop .wire {background: orangered;}
+
+.loop .en, .loop .wire {
+    display: inline-block;
+}
+
+.loop .sequence { 
+    display: inline-block; 
+    position: relative;
+}
+
+.loop .fork { 
+    display: inline-block; 
+    position: relative;
+    border-left: 2px solid black;
+    padding-left: 2px;
+}
+.loop .fork:before {
+    position: absolute;
+    left: -1em;
+    content: "";
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background: green;
+}
+.loop .fork > * {
+    display: block;
+}
+
+.loop .join:before {
+    content: "";
+    width: 100%; height: 100%; position: absolute;
+    border: 2px solid orangered;
+    padding: 2px;
+    border-radius: 1em;
+    border-right: 0px solid transparent;
+}
+.loop .join {
+    position: relative;
+    padding: 2px;
+ }
+*/
